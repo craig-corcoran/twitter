@@ -4,9 +4,14 @@ import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from wordcloud import WordCloud
 import matplotlib
+import click
 
 
-def tweet_cloud(count=200, img_filename='wordcloud.png', user="realDonaldTrump"):
+@click.command()
+@click.option('--user', default="realDonaldTrump", help='twitter account name')
+@click.option('--count', default=200, help='number of most recent tweets')
+@click.option('--img_filename', default='wordcloud.png', help='file name for output word cloud image')
+def tweet_cloud(user="realDonaldTrump", count=200, img_filename='wordcloud.png'):
     '''
     Create a wordcloud image from user's most recent tweets
     :param count: number of tweets to use (max 200?)
